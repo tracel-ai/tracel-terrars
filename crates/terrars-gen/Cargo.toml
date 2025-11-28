@@ -7,10 +7,10 @@ readme = "readme.md"
 repository = "https://github.com/andrewbaxter/terrars"
 
 [dependencies]
+anyhow = { workspace = true }
 cargo_toml = { workspace = true }
 clap = { workspace = true }
 genemichaels-lib = { workspace = true }
-loga = { workspace = true }
 proc-macro2 = { workspace = true }
 quote = { workspace = true }
 serde = { workspace = true }
