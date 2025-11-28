@@ -10,8 +10,8 @@ license = "MIT OR Apache-2.0"
 readme = "README.md"
 
 [workspace.dependencies]
-aargvark = { version = "0.3", features = ["serde_json"] }
 cargo_toml = "0.20"
+clap = { version = "4", features = ["derive"] }
 genemichaels-lib = "0.5"
 loga = "0.5"
 proc-macro2 = "1"

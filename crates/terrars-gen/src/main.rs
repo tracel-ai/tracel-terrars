@@ -1,8 +1,4 @@
-use aargvark::{
-    Aargvark,
-    AargvarkJson,
-    vark,
-};
+use clap::Parser;
 use loga::{
     ea,
     ResultContext,
@@ -66,36 +62,55 @@ impl CollCommand for Command {
             },
             Err(e) => Err(e.into()),
         }.context_with("Failed to run", ea!(command = self.dbg_str()))?;
-        return Ok(());
+        Ok(())
     }
+}
+
+/// Configuration file format
+#[derive(Serialize, Deserialize)]
+struct Config {
+    provider: String,
+    version: String,
+    include: Option<Vec<String>>,
+    exclude: Option<Vec<String>>,
+    dest: PathBuf,
+    feature_gate: Option<PathBuf>,
+}
+
+/// Command-line arguments parsed with clap
+#[derive(Parser, Debug)]
+#[command(author, version, about, long_about = None)]
+struct Arguments {
+    /// Path to terrars config jsons.
+    #[arg(value_name = "CONFIG")]
+    configs: Vec<PathBuf>,
+
+    /// Save the provider json in this dir (debug helper).
+    #[arg(long)]
+    dump: bool,
 }
 
 fn main() {
     match es!({
-        #[derive(Serialize, Deserialize)]
-        struct Config {
-            provider: String,
-            version: String,
-            include: Option<Vec<String>>,
-            exclude: Option<Vec<String>>,
-            dest: PathBuf,
-            feature_gate: Option<PathBuf>,
-        }
+        let args = Arguments::parse();
 
-        #[derive(Aargvark)]
-        struct Arguments {
-            /// Path to terrars config jsons.
-            configs: Vec<AargvarkJson<Config>>,
-            /// Save the provider json in this dir (debug helper).
-            dump: Option<()>,
-        }
-
-        let args = vark::<Arguments>();
         if args.configs.is_empty() {
             return Err(loga::err("No configs specified; nothing to do"));
         }
-        for config in args.configs {
-            let config = config.value;
+
+        // Process each config file
+        for config_path in args.configs {
+            // Load config JSON from disk
+            let raw = fs::read(&config_path).context_with(
+                "Failed to read config file",
+                ea!(path = config_path.to_string_lossy()),
+            )?;
+
+            let config: Config = serde_json::from_slice(&raw).context_with(
+                "Error parsing config json",
+                ea!(path = config_path.to_string_lossy()),
+            )?;
+
             let (vendor, shortname) =
                 config.provider.split_once("/").unwrap_or_else(|| ("hashicorp".into(), &config.provider));
             let provider_prefix = format!("{}_", shortname);
@@ -108,21 +123,27 @@ fn main() {
 
             // Get provider schema
             let dir = tempfile::tempdir()?;
-            fs::write(dir.path().join("providers.tf.json"), &serde_json::to_vec(&json!({
-                "terraform": {
-                    "required_providers": {
-                        shortname: {
-                            "source": config.provider,
-                            "version": config.version,
+            fs::write(
+                dir.path().join("providers.tf.json"),
+                &serde_json::to_vec(&json!({
+                    "terraform": {
+                        "required_providers": {
+                            shortname: {
+                                "source": config.provider,
+                                "version": config.version,
+                            }
                         }
                     }
-                }
-            })).unwrap()).context("Failed to write bootstrap terraform code for provider schema extraction")?;
+                })).unwrap(),
+            )
+            .context("Failed to write bootstrap terraform code for provider schema extraction")?;
+
             Command::new("terraform")
                 .args(&["init", "-no-color"])
                 .current_dir(&dir)
                 .run()
                 .context("Error initializing terraform in export dir")?;
+
             let schema_raw =
                 Command::new("terraform")
                     .args(&["providers", "schema", "-json", "-no-color"])
@@ -130,9 +151,11 @@ fn main() {
                     .output()
                     .context("Error outputting terraform provider schema")?
                     .stdout;
-            if args.dump.is_some() {
+
+            if args.dump {
                 fs::write("dump.json", &schema_raw)?;
             }
+
             let schema: ProviderSchemas =
                 serde_json::from_slice(&schema_raw).context("Error parsing provider schema json from terraform")?;
 
