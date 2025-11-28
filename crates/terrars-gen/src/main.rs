@@ -1,4 +1,5 @@
-use crate::generatelib::{
+use crate::generatelib::
+{
     generate::{
         generate_block_fields, generate_fields_from_value_map, to_camel, to_snake, TopLevelFields,
     },
@@ -581,6 +582,9 @@ fn run() -> Result<()> {
                 .collect::<Vec<String>>();
             let nice_datasource_name = to_snake(&use_name_parts);
             if whitelist && !include.remove(&nice_datasource_name) {
+                continue;
+            }
+            if exclude.remove(&nice_datasource_name) {
                 continue;
             }
             println!("Generating datasource {}", datasource_name);
