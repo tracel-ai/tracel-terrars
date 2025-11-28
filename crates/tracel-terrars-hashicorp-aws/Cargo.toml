@@ -1,0 +1,8 @@
+[package]
+name = "tracel-terrars-hashicorp-aws"
+version = "0.1.13"
+edition = "2021"
+description = "AWS Terraform Provider bindings for terrars"
+license = "ISC"
+readme = "README.md"
+repository = "https://github.com/tracel-ai/tracel-terrars/crates/tracel-terrars-hashicorp-aws"
