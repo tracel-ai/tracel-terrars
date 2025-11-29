@@ -174,16 +174,27 @@ fn run() -> Result<()> {
         .context("Failed to write bootstrap terraform code for provider schema extraction")?;
 
         eprintln!("⚙️  Running `terraform init`...");
-        Command::new("terraform")
-            .args(["init"])
-            .current_dir(&dir)
+        Command::new("cargo")
+            .args([
+                "xtask",
+                "infra",
+                "init",
+                "--path",
+                &dir.path().to_string_lossy(),
+            ])
             .run()
             .context("Error initializing terraform in export dir")?;
 
         eprintln!("🧩 Generating terraform provider schema...");
-        let schema_raw = Command::new("terraform")
-            .args(["providers", "schema", "-json", "-no-color"])
-            .current_dir(&dir)
+        let schema_raw = Command::new("cargo")
+            .args([
+                "xtask",
+                "infra",
+                "providers",
+                "schema",
+                "--path",
+                &dir.path().to_string_lossy(),
+            ])
             .output()
             .context("Error outputting terraform provider schema")?
             .stdout;
