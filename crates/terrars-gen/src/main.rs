@@ -103,7 +103,7 @@ impl Filter {
 
 fn main() {
     if let Err(err) = run() {
-        eprintln!("Error: {err:?}");
+        eprintln!("❌ Error: {err:?}");
         std::process::exit(1);
     }
 }
@@ -129,6 +129,13 @@ fn run() -> Result<()> {
                 config_path.to_string_lossy()
             )
         })?;
+
+        eprintln!(
+            "📦 Processing provider {provider}@{version}\n   📁 Dest: {dest}",
+            provider = config.provider,
+            version = config.version,
+            dest = config.dest.to_string_lossy(),
+        );
 
         let (vendor, shortname) = config
             .provider
@@ -166,13 +173,14 @@ fn run() -> Result<()> {
         )
         .context("Failed to write bootstrap terraform code for provider schema extraction")?;
 
+        eprintln!("⚙️  Running `terraform init`...");
         Command::new("terraform")
             .args(&["init"])
             .current_dir(&dir)
             .run()
             .context("Error initializing terraform in export dir")?;
 
-        eprintln!("Generating schema...");
+        eprintln!("🧩 Generating terraform provider schema...");
         let schema_raw = Command::new("terraform")
             .args(&["providers", "schema", "-json", "-no-color"])
             .current_dir(&dir)
@@ -182,10 +190,12 @@ fn run() -> Result<()> {
 
         if args.dump {
             fs::write("dump.json", &schema_raw)?;
+            eprintln!("💾 Schema dump written to dump.json");
         }
 
         let schema: ProviderSchemas = serde_json::from_slice(&schema_raw)
             .context("Error parsing provider schema json from terraform")?;
+        eprintln!("✅ Provider schema loaded.");
 
         // Generate
         fn write_file(path: &Path, contents: Vec<TokenStream>) -> Result<()> {
@@ -219,7 +229,6 @@ fn run() -> Result<()> {
 
             Ok(())
         }
-        eprintln!("Done.");
 
         fn rustfile_template() -> Vec<TokenStream> {
             vec![quote!(
@@ -230,7 +239,8 @@ fn run() -> Result<()> {
             )]
         }
 
-        eprintln!("Generating bindings...");
+        eprintln!("🦀 Generating Rust bindings...");
+
         // Provider type + provider
         let provider_schema = {
             let key = format!("registry.terraform.io/{}/{}", vendor, shortname);
@@ -357,7 +367,9 @@ fn run() -> Result<()> {
         }
 
         // ----- Resources -----
-        eprintln!("-> Resources generation");
+        eprintln!("───────────────────────────────────────────────────────────────────────────");
+        eprintln!("⚡ Resources generation");
+        eprintln!("───────────────────────────────────────────────────────────────────────────");
 
         for (resource_name, resource) in &provider_schema.resource_schemas {
             let mut out = rustfile_template();
@@ -607,7 +619,10 @@ fn run() -> Result<()> {
         }
 
         // ----- Data sources -----
-        eprintln!("-> Data sources generation");
+        eprintln!("───────────────────────────────────────────────────────────────────────────");
+        eprintln!("⚡ Data sources generation");
+        eprintln!("───────────────────────────────────────────────────────────────────────────");
+
         for (datasource_name, datasource) in &provider_schema.data_source_schemas {
             let mut out = rustfile_template();
             out.push(quote!(use super::provider::#provider_ident;));
@@ -844,6 +859,11 @@ fn run() -> Result<()> {
                 )
             })?;
         }
+
+        eprintln!("🎉 Finished generating bindings for {provider}@{version}",
+            provider = config.provider,
+            version = config.version
+        );
     }
 
     Ok(())
@@ -852,7 +872,7 @@ fn run() -> Result<()> {
 fn log_triage(name: &str, was_included: bool, is_excluded: bool) -> bool {
     if was_included {
         eprintln!(
-            "{green}[included]{reset} {white}{name}{reset}...",
+            "{green}✅ [allowed]{reset} {white}{name}{reset}...",
             green = COLOR_GREEN,
             reset = COLOR_RESET,
             white = COLOR_WHITE,
@@ -861,7 +881,7 @@ fn log_triage(name: &str, was_included: bool, is_excluded: bool) -> bool {
         true
     } else if is_excluded {
         eprintln!(
-            "{red}[excluded]{reset} {white}{name}{reset}",
+            "{red}⛔ [ignored]{reset} {white}{name}{reset}",
             red = COLOR_RED,
             reset = COLOR_RESET,
             white = COLOR_WHITE,
@@ -870,7 +890,7 @@ fn log_triage(name: &str, was_included: bool, is_excluded: bool) -> bool {
         false
     } else {
         eprintln!(
-            "{yellow}[not yet triaged]{reset} {white}{name}{reset}",
+            "{yellow}❔ [unrated]{reset} {white}{name}{reset}",
             yellow = COLOR_YELLOW,
             reset = COLOR_RESET,
             white = COLOR_WHITE,
