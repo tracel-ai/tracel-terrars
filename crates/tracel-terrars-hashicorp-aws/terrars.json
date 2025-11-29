@@ -14,7 +14,7 @@
         "wafv2_rule_group",
         "wafv2_web_acl"
     ],
-    "dest": "src/aws",
+    "dest": "crates/tracel-terrars-hashicorp-aws/src/aws",
     "feature_gate": "Cargo.toml"
 }
 

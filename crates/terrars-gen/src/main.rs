@@ -26,17 +26,14 @@ pub trait CollCommand {
 
 impl CollCommand for Command {
     fn run(&mut self) -> Result<()> {
-        let output = self
-            .output()
+        let status = self
+            .status()
             .with_context(|| format!("Failed to run command {:?}", self))?;
 
-        if output.status.success() {
+        if status.success() {
             Ok(())
         } else {
-            bail!(
-                "Command should succeed but exited with status {}",
-                output.status
-            )
+            bail!("Command should succeed but exited with status {status}")
         }
     }
 }
@@ -47,7 +44,6 @@ const COLOR_GREEN: &str = "\x1b[32m";
 const COLOR_RED: &str = "\x1b[31m";
 const COLOR_YELLOW: &str = "\x1b[33m";
 const COLOR_WHITE: &str = "\x1b[37m";
-const COLOR_BOLD: &str = "\x1b[1m";
 
 /// Configuration file format
 #[derive(Serialize, Deserialize)]
@@ -105,7 +101,6 @@ impl Filter {
     }
 }
 
-
 fn main() {
     if let Err(err) = run() {
         eprintln!("Error: {err:?}");
@@ -149,11 +144,7 @@ fn run() -> Result<()> {
 
         // Validate that nothing is both included and excluded
         resource_filter.validate("Resource", "include_resources", "exclude_resources")?;
-        datasource_filter.validate(
-            "Datasource",
-            "include_datasources",
-            "exclude_datasources",
-        )?;
+        datasource_filter.validate("Datasource", "include_datasources", "exclude_datasources")?;
 
         // Feature output
         let mut features = vec![];
@@ -176,11 +167,12 @@ fn run() -> Result<()> {
         .context("Failed to write bootstrap terraform code for provider schema extraction")?;
 
         Command::new("terraform")
-            .args(&["init", "-no-color"])
+            .args(&["init"])
             .current_dir(&dir)
             .run()
             .context("Error initializing terraform in export dir")?;
 
+        eprintln!("Generating schema...");
         let schema_raw = Command::new("terraform")
             .args(&["providers", "schema", "-json", "-no-color"])
             .current_dir(&dir)
@@ -227,6 +219,7 @@ fn run() -> Result<()> {
 
             Ok(())
         }
+        eprintln!("Done.");
 
         fn rustfile_template() -> Vec<TokenStream> {
             vec![quote!(
@@ -237,6 +230,7 @@ fn run() -> Result<()> {
             )]
         }
 
+        eprintln!("Generating bindings...");
         // Provider type + provider
         let provider_schema = {
             let key = format!("registry.terraform.io/{}/{}", vendor, shortname);
@@ -363,11 +357,7 @@ fn run() -> Result<()> {
         }
 
         // ----- Resources -----
-        println!(
-            "\n{bold}=== Resources generation ==={reset}",
-            bold = COLOR_BOLD,
-            reset = COLOR_RESET
-        );
+        eprintln!("-> Resources generation");
 
         for (resource_name, resource) in &provider_schema.resource_schemas {
             let mut out = rustfile_template();
@@ -617,12 +607,7 @@ fn run() -> Result<()> {
         }
 
         // ----- Data sources -----
-        println!(
-            "\n{bold}=== Data sources generation ==={reset}",
-            bold = COLOR_BOLD,
-            reset = COLOR_RESET
-        );
-
+        eprintln!("-> Data sources generation");
         for (datasource_name, datasource) in &provider_schema.data_source_schemas {
             let mut out = rustfile_template();
             out.push(quote!(use super::provider::#provider_ident;));
@@ -866,7 +851,7 @@ fn run() -> Result<()> {
 
 fn log_triage(name: &str, was_included: bool, is_excluded: bool) -> bool {
     if was_included {
-        println!(
+        eprintln!(
             "{green}[included]{reset} {white}{name}{reset}...",
             green = COLOR_GREEN,
             reset = COLOR_RESET,
@@ -875,7 +860,7 @@ fn log_triage(name: &str, was_included: bool, is_excluded: bool) -> bool {
         );
         true
     } else if is_excluded {
-        println!(
+        eprintln!(
             "{red}[excluded]{reset} {white}{name}{reset}",
             red = COLOR_RED,
             reset = COLOR_RESET,
@@ -884,7 +869,7 @@ fn log_triage(name: &str, was_included: bool, is_excluded: bool) -> bool {
         );
         false
     } else {
-        println!(
+        eprintln!(
             "{yellow}[not yet triaged]{reset} {white}{name}{reset}",
             yellow = COLOR_YELLOW,
             reset = COLOR_RESET,
