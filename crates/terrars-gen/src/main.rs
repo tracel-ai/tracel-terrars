@@ -76,6 +76,36 @@ struct Arguments {
     dump: bool,
 }
 
+/// Include/exclude filter for resources or datasources.
+struct Filter {
+    include: HashSet<String>,
+    exclude: HashSet<String>,
+}
+
+impl Filter {
+    fn from_options(include: &Option<Vec<String>>, exclude: &Option<Vec<String>>) -> Self {
+        Self {
+            include: include.clone().unwrap_or_default().into_iter().collect(),
+            exclude: exclude.clone().unwrap_or_default().into_iter().collect(),
+        }
+    }
+
+    /// Ensure no name is present in both include and exclude.
+    fn validate(&self, kind: &str, include_label: &str, exclude_label: &str) -> Result<()> {
+        if let Some(name) = self.include.intersection(&self.exclude).next() {
+            bail!(
+                "{kind} '{name}' is present in both {include_label} and {exclude_label}",
+                kind = kind,
+                name = name,
+                include_label = include_label,
+                exclude_label = exclude_label,
+            );
+        }
+        Ok(())
+    }
+}
+
+
 fn main() {
     if let Err(err) = run() {
         eprintln!("Error: {err:?}");
@@ -111,44 +141,19 @@ fn run() -> Result<()> {
             .unwrap_or_else(|| ("hashicorp".into(), &config.provider));
         let provider_prefix = format!("{}_", shortname);
 
-        let mut include_resources: HashSet<String> = config
-            .include_resources
-            .clone()
-            .unwrap_or_default()
-            .into_iter()
-            .collect();
-        let exclude_resources: HashSet<String> = config
-            .exclude_resources
-            .clone()
-            .unwrap_or_default()
-            .into_iter()
-            .collect();
-        let mut include_datasources: HashSet<String> = config
-            .include_datasources
-            .clone()
-            .unwrap_or_default()
-            .into_iter()
-            .collect();
-        let exclude_datasources: HashSet<String> = config
-            .exclude_datasources
-            .clone()
-            .unwrap_or_default()
-            .into_iter()
-            .collect();
+        // Build filters from config
+        let mut resource_filter =
+            Filter::from_options(&config.include_resources, &config.exclude_resources);
+        let mut datasource_filter =
+            Filter::from_options(&config.include_datasources, &config.exclude_datasources);
 
-        // check that no name is  both included and excluded
-        for name in include_resources.intersection(&exclude_resources) {
-            bail!(
-                "Resource '{}' is present in both include_resources and exclude_resources",
-                name
-            );
-        }
-        for name in include_datasources.intersection(&exclude_datasources) {
-            bail!(
-                "Datasource '{}' is present in both include_datasources and exclude_datasources",
-                name
-            );
-        }
+        // Validate that nothing is both included and excluded
+        resource_filter.validate("Resource", "include_resources", "exclude_resources")?;
+        datasource_filter.validate(
+            "Datasource",
+            "include_datasources",
+            "exclude_datasources",
+        )?;
 
         // Feature output
         let mut features = vec![];
@@ -379,8 +384,8 @@ fn run() -> Result<()> {
                 .collect::<Vec<String>>();
 
             let nice_resource_name = to_snake(&use_name_parts);
-            let was_included = include_resources.remove(&nice_resource_name);
-            let is_excluded = exclude_resources.contains(&nice_resource_name);
+            let was_included = resource_filter.include.remove(&nice_resource_name);
+            let is_excluded = resource_filter.exclude.contains(&nice_resource_name);
             if !log_triage(&nice_resource_name, was_included, is_excluded) {
                 continue;
             }
@@ -636,8 +641,8 @@ fn run() -> Result<()> {
                 .map(ToString::to_string)
                 .collect::<Vec<String>>();
             let nice_datasource_name = to_snake(&use_name_parts);
-            let was_included = include_datasources.remove(&nice_datasource_name);
-            let is_excluded = exclude_datasources.contains(&nice_datasource_name);
+            let was_included = datasource_filter.include.remove(&nice_datasource_name);
+            let is_excluded = datasource_filter.exclude.contains(&nice_datasource_name);
             if !log_triage(&nice_datasource_name, was_included, is_excluded) {
                 continue;
             }
@@ -812,11 +817,11 @@ fn run() -> Result<()> {
         write_file(&provider_dir.join("mod.rs"), mod_out)?;
 
         // Any included items that we never saw is an error
-        if !include_resources.is_empty() || !include_datasources.is_empty() {
+        if !resource_filter.include.is_empty() || !datasource_filter.include.is_empty() {
             bail!(
                 "Included resources/datasources were not found: resources={:?}, datasources={:?}",
-                include_resources,
-                include_datasources
+                resource_filter.include,
+                datasource_filter.include
             );
         }
 
