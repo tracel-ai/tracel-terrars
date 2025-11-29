@@ -1,11 +1,11 @@
 [package]
-name = "tracel-terrars-hashicorp-aws"
+name = "provider-hashicorp-aws"
 version = "6.22.1"
 edition = "2024"
 description = "AWS Terraform Provider bindings for terrars"
 readme = "README.md"
 license = "ISC"
-repository = "https://github.com/tracel-ai/tracel-terrars/crates/tracel-terrars-hashicorp-aws"
+repository = "https://github.com/tracel-ai/tracel-terrars/crates/provider-hashicorp-aws"
 
 [features]
 accessanalyzer_analyzer = []

@@ -2208,8 +2208,8 @@
         "data_wafv2_rule_group",
         "data_wafv2_web_acl"
     ],
-    "dest": "crates/tracel-terrars-hashicorp-aws/src/aws",
-    "feature_gate": "crates/tracel-terrars-hashicorp-aws/Cargo.toml"
+    "dest": "crates/provider-hashicorp-aws/src/aws",
+    "feature_gate": "crates/provider-hashicorp-aws/Cargo.toml"
 }
 
 

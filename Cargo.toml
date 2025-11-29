@@ -1,7 +1,7 @@
 [workspace]
 resolver = "2"
 members = ["crates/*"]
-exclude = ["xtask", "crates/tracel-terrars-hashicorp-aws"]
+exclude = ["xtask"]
 
 [workspace.package]
 edition = "2024"
