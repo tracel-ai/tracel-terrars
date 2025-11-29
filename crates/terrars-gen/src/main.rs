@@ -140,7 +140,7 @@ fn run() -> Result<()> {
         let (vendor, shortname) = config
             .provider
             .split_once('/')
-            .unwrap_or_else(|| ("hashicorp".into(), &config.provider));
+            .unwrap_or_else(|| ("hashicorp", &config.provider));
         let provider_prefix = format!("{}_", shortname);
 
         // Build filters from config
@@ -175,14 +175,14 @@ fn run() -> Result<()> {
 
         eprintln!("⚙️  Running `terraform init`...");
         Command::new("terraform")
-            .args(&["init"])
+            .args(["init"])
             .current_dir(&dir)
             .run()
             .context("Error initializing terraform in export dir")?;
 
         eprintln!("🧩 Generating terraform provider schema...");
         let schema_raw = Command::new("terraform")
-            .args(&["providers", "schema", "-json", "-no-color"])
+            .args(["providers", "schema", "-json", "-no-color"])
             .current_dir(&dir)
             .output()
             .context("Error outputting terraform provider schema")?
@@ -222,7 +222,7 @@ fn run() -> Result<()> {
             )
             .map_err(|e| anyhow!("Error formatting generated code: {e}"))?;
 
-            File::create(&path)
+            File::create(path)
                 .with_context(|| format!("Failed to create rust file {}", path.to_string_lossy()))?
                 .write_all(formatted.rendered.as_bytes())
                 .with_context(|| format!("Failed to write rust file {}", path.to_string_lossy()))?;
@@ -281,7 +281,7 @@ fn run() -> Result<()> {
             let mut raw_fields = TopLevelFields::default();
             generate_fields_from_value_map(
                 &mut raw_fields,
-                &provider_name_parts,
+                provider_name_parts,
                 &provider_schema.provider.block.attributes,
                 true,
             );
@@ -848,7 +848,7 @@ fn run() -> Result<()> {
 
             fs::write(
                 &cargo_path,
-                &toml::to_string(&manifest)
+                toml::to_string(&manifest)
                     .context("Error serializing modified Cargo.toml")?
                     .into_bytes(),
             )
@@ -860,7 +860,8 @@ fn run() -> Result<()> {
             })?;
         }
 
-        eprintln!("🎉 Finished generating bindings for {provider}@{version}",
+        eprintln!(
+            "🎉 Finished generating bindings for {provider}@{version}",
             provider = config.provider,
             version = config.version
         );
