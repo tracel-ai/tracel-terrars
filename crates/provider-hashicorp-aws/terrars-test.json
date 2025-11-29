@@ -1572,7 +1572,7 @@
         "xray_encryption_config",
         "xray_group",
         "xray_resource_policy",
-        "xray_sampling_rule",
+        "xray_sampling_rule"
     ],
     "include_datasources": [
         "data_alb",
@@ -2206,8 +2206,8 @@
         "data_workspaces_bundle",
         "data_workspaces_directory",
         "data_workspaces_image",
-        "data_workspaces_workspace",
+        "data_workspaces_workspace"
     ],
-    "dest": "crates/provider-hashicorp-aws/src/aws",
-    "feature_gate": "crates/provider-hashicorp-aws/Cargo.toml"
+    "dest": "crates/provider-hashicorp-aws/test/src/aws",
+    "feature_gate": "crates/provider-hashicorp-aws/test/Cargo.toml"
 }
