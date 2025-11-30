@@ -1,12 +1,12 @@
 [package]
 name = "xtask"
-version = "4.4.0"
+version = "4.4.1"
 edition = "2024"
 
 [dependencies]
 log = "0.4.28"
 strum = "0.27.2"
 
-tracel-xtask = "=4.4.0"
+tracel-xtask = "=4.4.1"
 # ### For local development. ###
 # tracel-xtask = { path = "../../xtask/crates/tracel-xtask", default-features = false }
