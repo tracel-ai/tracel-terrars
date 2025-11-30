@@ -130,6 +130,10 @@ fn run() -> Result<()> {
             )
         })?;
 
+        let config_dir = config_path
+            .parent()
+            .context("Config path should have a parent directory")?;
+
         eprintln!(
             "📦 Processing provider {provider}@{version}\n   📁 Dest: {dest}",
             provider = config.provider,
@@ -173,7 +177,7 @@ fn run() -> Result<()> {
         )
         .context("Failed to write bootstrap terraform code for provider schema extraction")?;
 
-        eprintln!("⚙️  Running `terraform init`...");
+        eprintln!("⚙️ Running `terraform init`...");
         Command::new("cargo")
             .args([
                 "xtask",
@@ -870,6 +874,13 @@ fn run() -> Result<()> {
                 )
             })?;
         }
+
+        eprintln!("️🧹 Formatting and cleaning...");
+        Command::new("cargo")
+            .args(["fmt"])
+            .current_dir(config_dir)
+            .run()
+            .context("Error running cargo fmt in crate directory")?;
 
         eprintln!(
             "🎉 Finished generating bindings for {provider}@{version}",

@@ -3,6 +3,7 @@ name = "terrars-gen"
 edition = "2021"
 description = "Terraform in Rust"
 license = "ISC"
+version = { workspace = true }
 
 [dependencies]
 anyhow = { workspace = true }
